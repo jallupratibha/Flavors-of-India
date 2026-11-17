@@ -4,7 +4,7 @@
 
 **Why:** when you travel in India, it's hard to know which local dishes are worth trying. Search engines give scattered lists. This puts everything in one place.
 
-**Live:** _add your Vercel link here_ · **Built by** [Pratibha Jallu](https://pratibhajallu.vercel.app)
+
 
 ![Where are you going?](docs/explore.jpg)
 
@@ -34,7 +34,7 @@
 | Front end | React 18, React Router 6, Vite, plain CSS |
 | Back end | Node.js, Express (REST API) |
 | Tests | Node's built-in test runner (`node --test`) |
-| Hosting | Vercel: static site + serverless API |
+
 
 ## API
 
