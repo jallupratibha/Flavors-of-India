@@ -4,7 +4,7 @@
 
 **Why:** when you travel in India, it's hard to know which local dishes are worth trying. Search engines give scattered lists. This puts everything in one place.
 
-
+🎥 **[Watch the video walkthrough](https://drive.google.com/file/d/1D85l7zgLKaPBaEL2ik4RHtA9ZIsY0Qhh/view?usp=drive_link)** · **Built by** [Pratibha Jallu](https://pratibhajallu.vercel.app)
 
 ![Where are you going?](docs/explore.jpg)
 
@@ -23,9 +23,18 @@
 - **Responsive**: works from small phones (with an app-style tab bar) to large monitors.
 - **Accessible**: keyboard-friendly map, screen-reader labels, visible focus and reduced-motion support.
 
-| Dish page | A city: Hyderabad | Phone |
+| Dish page | Search: "dosa" | Phone |
 |---|---|---|
 | ![Dish page](docs/dish.jpg) | ![Hyderabad](docs/search.jpg) | ![Phone](docs/mobile.jpg) |
+
+## Design decisions
+
+- **Start from the trip, not the dish.** Travellers know *where* they're going, not what to order, so the first question is "Where are you going?" and the map comes second.
+- **State → city → dish.** Food changes from town to town (Hyderabad isn't the rest of Telangana), so each state is split into cities, with "Across the state" for dishes eaten everywhere.
+- **Must-try first.** Each place leads with a short list of must-try dishes, so a visitor doesn't have to scan dozens of options.
+- **From reading to eating in one tap.** Every dish ends with "Want to try it?", with links to Swiggy, Zomato and Google Maps already searching in your city.
+- **Phone first.** Most people use this on the move, so phones get an app-style tab bar and large tap targets.
+- **One visual style.** Every dish has an original illustration in the same style, so the grid looks calm and consistent, with no copyright issues.
 
 ## Tech stack
 
@@ -75,7 +84,7 @@ To use your own photo instead, put it in `public/images/<state id>/` and set the
 ## Project structure
 
 ```
-api/index.js        Vercel entry: hands /api/* requests to the Express app
+api/index.js        Serverless entry: hands /api/* requests to the Express app
 server/app.js       Express routes
 server/dishes.js    Search, filter and lookup logic (pure functions)
 server/*.test.js    API logic tests
@@ -96,7 +105,7 @@ npm run build    # production build into dist/
 
 ## Engineering notes
 
-- **Performance:** all 368 dish images are small code-drawn SVGs (about 10 KB each), loaded lazily, and API responses are cached in memory on the client and at the edge.
+- **Performance:** all 368 dish images are small code-drawn SVGs (about 10 KB each), loaded lazily, and API responses are cached in memory on the client.
 - **Search ranking:** a state name shows its must-try dishes first; a town shows dishes from that town first ("tirupati" → Tirupati laddu); otherwise whole-word name matches come first ("dosa" → Masala dosa).
 - **Ordering links:** Swiggy and Zomato have no public search APIs, so the app builds search links with the dish and city filled in.
 - **Separation:** search and filter logic is pure and tested on its own, so Express only handles HTTP.
